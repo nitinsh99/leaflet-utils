@@ -1,6 +1,6 @@
 {
-  "name": "L",
-  "version": "0.1.0",
+  "name": "ht-leaflet-utils",
+  "version": "0.1.1",
   "description": "Leaflet utils",
   "main": "dist/main.js",
   "typings": "dist/main.d.ts",
@@ -22,23 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DxCx/hypertrack/leaflet-utils.git"
+    "url": "git+https://github.com/hypertrack/leaflet-utils.git"
   },
   "keywords": [
-    "example",
+    "leaflet",
     "typescript",
     "library",
-    "starter",
-    "webpack",
-    "browserify",
-    "dts-bundle",
-    "package",
-    "tslint",
-    "jest",
-    "babel",
-    "tsloader",
-    "boilerplate",
-    "awesome-typescript-loader"
+    "map",
+    "hypertrack"
   ],
   "author": "gaurav mukherjee",
   "license": "MIT",
