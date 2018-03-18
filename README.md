@@ -1,5 +1,5 @@
 # leaflet-utils
-This library exposes `ht` as a global variable. 
+This library exposes `ht` as a global variable. It's a forked from original source.
 
 ## Install
 `npm i ht-leaflet-utils -S`
