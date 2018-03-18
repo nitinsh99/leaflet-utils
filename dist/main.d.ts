@@ -12,7 +12,7 @@ declare module 'ht/replay' {
 		constructor(encodedPolyline?: string, callback?: (data: IReplayHead) => void);
 		getStats(): IReplayStats;
 		getHead(): IReplayHead;
-		setCallback(callback: (data: IReplayHead) => void): void;
+		setCallback(callback: (data: IReplayHead) => void, tickInterval?: number): void;
 		update(encodedPolyline?: string): void;
 		play(): void;
 		pause(): void;
