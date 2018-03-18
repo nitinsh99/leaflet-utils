@@ -8,6 +8,7 @@ export class replay {
     private stats: IReplayStats | null;
     private head: IReplayHead | null;
     private replayTimer: any;
+    private tickInterval: number;
     callback: (data: IReplayHead) => void;
 
     constructor(encodedPolyline?: string, callback?: (data: IReplayHead) => void) {
@@ -27,6 +28,7 @@ export class replay {
     }
 
     setCallback(callback: (data: IReplayHead) => void, tickInterval?: number) {
+        if (tickInterval) this.tickInterval = tickInterval;
         if (this.callback) this.callback = callback;
     }
 
@@ -116,7 +118,8 @@ export class replay {
             this.pause();
         } else {
             let currentTimePecent = this.head ? this.head.timePercent : 0;
-            let nextTimePercent = Math.round((currentTimePecent + 0.1) * 100) / 100;
+            let localTickInterval = (this.tickInterval) ? this.tickInterval : 0.2;
+            let nextTimePercent = Math.round((currentTimePecent + localTickInterval) * 100) / 100;
             this.goTo(nextTimePercent);
         }
     }
