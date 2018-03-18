@@ -1,6 +1,6 @@
 {
   "name": "ht-leaflet-utils",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Leaflet utils",
   "main": "dist/main.js",
   "typings": "dist/main.d.ts",
