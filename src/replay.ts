@@ -19,6 +19,8 @@ export class replay {
         if (callback) this.callback = callback;
     }
 
+
+
     getStats() {
         return this.stats;
     }
@@ -27,8 +29,12 @@ export class replay {
         return this.head;
     }
 
-    setCallback(callback: (data: IReplayHead) => void, tickInterval?: number) {
-        if (tickInterval) this.tickInterval = tickInterval;
+    setTickInterval(tickInterval: number) {
+        this.tickInterval = tickInterval;
+    }
+
+
+    setCallback(callback: (data: IReplayHead) => void, ) {
         if (this.callback) this.callback = callback;
     }
 
