@@ -1,7 +1,8 @@
-import {TimelinePolyline} from "./timeline-polyline";
-import {IReplayStats} from "./model";
-import {IReplayHead} from "./model";
+import { TimelinePolyline } from "./timeline-polyline";
+import { IReplayStats } from "./model";
+import { IReplayHead } from "./model";
 var Polyline = require('time-aware-polyline');
+
 export class replay {
     private timelinePolyline: TimelinePolyline = new TimelinePolyline();
     private stats: IReplayStats | null;
@@ -10,11 +11,11 @@ export class replay {
     callback: (data: IReplayHead) => void;
 
     constructor(encodedPolyline?: string, callback?: (data: IReplayHead) => void) {
-        if(encodedPolyline) {
+        if (encodedPolyline) {
             this.updateTimeline(encodedPolyline);
             this.setStats()
         }
-        if(callback) this.callback = callback;
+        if (callback) this.callback = callback;
     }
 
     getStats() {
@@ -25,8 +26,8 @@ export class replay {
         return this.head;
     }
 
-    setCallback(callback: (data: IReplayHead) => void) {
-        if(this.callback) this.callback = callback;
+    setCallback(callback: (data: IReplayHead) => void, tickInterval?: number) {
+        if (this.callback) this.callback = callback;
     }
 
     update(encodedPolyline?: string) {
@@ -40,7 +41,7 @@ export class replay {
     }
 
     play() {
-        if(!this.replayTimer) {
+        if (!this.replayTimer) {
             this.replayTimer = setInterval(() => {
                 this.tick()
             }, 50)
@@ -49,7 +50,7 @@ export class replay {
     }
 
     pause() {
-        if(this.replayTimer) clearInterval(this.replayTimer);
+        if (this.replayTimer) clearInterval(this.replayTimer);
         this.replayTimer = null;
     }
 
@@ -77,7 +78,7 @@ export class replay {
         let oldTimepercent = this.head.timePercent;
         let oldDuration = this.stats.duration;
         this.setStats();
-        let newTimePecent = oldTimepercent * oldDuration /this.stats.duration;
+        let newTimePecent = oldTimepercent * oldDuration / this.stats.duration;
         this.head = this.getHeadAtTimePercent(newTimePecent);
     }
 
@@ -97,7 +98,7 @@ export class replay {
     }
 
     private getTimeAtTimePercent(number: number) {
-        if(number <= 0) {
+        if (number <= 0) {
             return this.timelinePolyline.getStartTime()
         }
         else if (number <= 100) {
@@ -111,11 +112,11 @@ export class replay {
     }
 
     private tick() {
-        if(this.head && this.head.timePercent > 100) {
+        if (this.head && this.head.timePercent > 100) {
             this.pause();
         } else {
             let currentTimePecent = this.head ? this.head.timePercent : 0;
-            let nextTimePercent = Math.round((currentTimePecent + 0.2)*100)/100;
+            let nextTimePercent = Math.round((currentTimePecent + 0.1) * 100) / 100;
             this.goTo(nextTimePercent);
         }
     }
@@ -125,9 +126,9 @@ export class replay {
         let start = this.timelinePolyline.getStartTime();
         let duration = new Date(end).getTime() - new Date(start).getTime();
         this.stats = {
-           start,
-           end,
-           duration
+            start,
+            end,
+            duration
         }
     }
 }
